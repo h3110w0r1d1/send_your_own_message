@@ -1,0 +1,18 @@
+<html>
+<body>
+  <button onclick="a()"></button>
+  <input type="text" id="messIn"></input>
+  <script>
+
+    function a(){
+let message=String(document.getElementById("messIn").value);
+
+var mes="?m="+encodeURIComponent(message);
+       fetch("https://example.com/"+mes,{method:"POST"})
+       .then(res=>console.log(res.status))
+       .catch(console.error);
+    }
+  </script>
+</body>
+  
+</html>
