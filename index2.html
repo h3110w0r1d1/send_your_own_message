@@ -1,17 +1,33 @@
 <html>
 <body>
-  <button onclick="a()"></button>
-  <input type="text" id="messIn"></input>
-  <script>
-
-    function a(){
-let message=String(document.getElementById("messIn").value);
-
-var mes="?m="+encodeURIComponent(message);
-       fetch("https://example.com/"+mes,{method:"POST"})
-       .then(res=>console.log(res.status))
-       .catch(console.error);
-    }
+  <button onclick="a()"> Send Message</button><br>
+  <b>Message(optional):</b><input type="text" id="messIn" placeholder="example text"></input>
+  <details id=elementsDetail><summary>Embeds</summary>
+  <input type=checkbox id=embedtrue name="embed"></input><label for="embedtrue"> enable an embed for this message</label>
+<br>
+  <b>Title:</b><input id="embedTitle" type="text"></input><b>Description(Optional)</b>
+   <input id="embedDesc" type="text"></input>
+   <input id="embedc" type="color"></input>
+   <p id=coloursel>hi</p>
+</details>
+<script>
+function a(){
+   let message=String(document.getElementById("messIn").value);
+   let embed=document.getElementById("embedtrue").checked;
+   let embedTitle=document.getElementById("embedTitle").value;
+   let embedDesc=document.getElementById("embedDesc").value;
+   let embedc=document.getElementById("embedc").value;
+   var mes="?m="+encodeURIComponent(message);
+   if(embed){//emd
+   mes+="&em=true";
+   if(embedTitle){mes+=String("&emt="+embedTitle)}
+   if(embedDesc){mes+=String("&emd="+embedDesc)}
+   if(embedc){mes+=String("&emc="+encodeURIComponent(embedc))}
+  }
+  fetch("https://example.com/"+mes,{method:"POST"})
+    .then(res=>console.log(res.status))
+      .catch(console.error);
+}
   </script>
 </body>
   
